@@ -1,9 +1,10 @@
-function clearAll(){
-    const memeContainer = document.querySelector('.meme-content')
-    const jokeContainer = document.querySelector('.joke')
-    const quoteContainer = document.querySelector('.quote')
-    const riddleContainer = document.querySelector('.riddle-content')
+
+const memeContainer = document.querySelector('.meme-content')
+const jokeContainer = document.querySelector('.joke')
+const quoteContainer = document.querySelector('.quote')
+const riddleContainer = document.querySelector('.riddle-content')
    
+function clearAll(){
    
     memeContainer.innerHTML = '',
     jokeContainer.innerHTML = '',
@@ -12,7 +13,6 @@ function clearAll(){
 }
 
 function showMeme(){
-    const memeContainer = document.querySelector('.meme-content')
     const getMeme = getRandomData('memes')
     const newElement = document.createElement('img')
     newElement.setAttribute('src', getMeme) 
@@ -23,9 +23,9 @@ function showMeme(){
   }
 
 function showJoke(){
-    const jokeContainer = document.querySelector('.joke')
     const getJoke = getRandomData('jokes')
     const newElement = document.createElement('p')
+    
     newElement.textContent = getJoke
 
     clearAll()
@@ -37,14 +37,49 @@ function showJoke(){
 function showQuote(){
 
     const getQuote = getRandomData('quotes')
+    const quote = document.createElement('p')
+    const author = document.createElement('p')
+    quote.textContent = getQuote.quote
+    author.textContent = '- ' + getQuote.author
 
+    clearAll()
+
+    quoteContainer.appendChild(quote)
+    quoteContainer.appendChild(author)
 }
 
 
 function showRiddle(){
 
     const getRiddle = getRandomData('riddles')
+    const riddle = document.createElement('p')
+    const answer = document.createElement('p')
 
+    riddle.textContent = getRiddle.question
+    answer.textContent = getRiddle.answer
+    answer.setAttribute('id', 'riddle-content')
+
+    answer.hidden = true
+
+    clearAll()
+
+    riddleContainer.appendChild(riddle)
+    riddleContainer.appendChild(answer)
+
+}
+function revealAnswer(){
+   const riddle = riddleContainer.querySelector('p')
+   const riddleAnswer = document.querySelector('#riddle-content')
+    
+   if(riddle && riddleAnswer.hidden){
+        riddleAnswer.hidden = false;
+   }
+   else if(riddle && riddleAnswer){
+     alert('The riddle answer is already exposed!');
+   }
+   else{
+    alert('There is no riddle to show answer for');
+   }
 }
 
 
