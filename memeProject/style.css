@@ -101,3 +101,9 @@ main {
         margin-bottom: 20px;
     }
 }
+
+.meme-content img{
+    height: 250px;
+    width: 250px;
+    background-color: #776969;
+}
